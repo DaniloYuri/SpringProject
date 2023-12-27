@@ -1,26 +1,29 @@
 package com.cordeiro.springProject.resources;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cordeiro.springProject.domain.Categoria;
+import com.cordeiro.springProject.services.CategoriaService;
 
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaResource {
 	
-	Categoria cat1 = new Categoria (1,"Informatica");
-	Categoria cat2 = new Categoria (1,"Enfermagem");
 	
+	@Autowired
+	private CategoriaService service;
 	@GetMapping("{id}")
-	public List<Categoria> lista(){
-		List<Categoria> lista = new ArrayList<Categoria>();
-		lista.add(cat1);
-		lista.add(cat2);
-		return lista;
+	public ResponseEntity<?> find(@PathVariable Integer id){
+		Categoria obj = service.find(id);
+		
+		return ResponseEntity.ok().body(obj);
+		
+		
 		
 	}
 
