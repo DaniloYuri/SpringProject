@@ -27,7 +27,7 @@ public class SpringProjectApplication implements CommandLineRunner {
 
 	public void run (String...args) throws Exception {
 		Categoria cat1 = new Categoria(null, "informatica");
-		Categoria cat2 = new Categoria(null, "enfermagem");
+		Categoria cat2 = new Categoria(null, "Escritorio");
 		
 		Produto p1 = new Produto(null,"Computador",2000.00);
 		Produto p2 = new Produto(null,"Impressora",200.00);
