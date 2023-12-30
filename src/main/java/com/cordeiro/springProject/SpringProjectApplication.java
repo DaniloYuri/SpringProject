@@ -10,10 +10,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cordeiro.springProject.domain.Categoria;
 import com.cordeiro.springProject.domain.Cidade;
+import com.cordeiro.springProject.domain.Cliente;
+import com.cordeiro.springProject.domain.Endereco;
 import com.cordeiro.springProject.domain.Estado;
 import com.cordeiro.springProject.domain.Produto;
+import com.cordeiro.springProject.domain.enums.TipoCliente;
 import com.cordeiro.springProject.repositorys.CategoriaRepository;
 import com.cordeiro.springProject.repositorys.CidadeRepository;
+import com.cordeiro.springProject.repositorys.ClienteRepository;
+import com.cordeiro.springProject.repositorys.EnderecoRepository;
 import com.cordeiro.springProject.repositorys.EstadoRepository;
 import com.cordeiro.springProject.repositorys.ProdutoRepository;
 
@@ -28,6 +33,10 @@ public class SpringProjectApplication implements CommandLineRunner {
 	private CidadeRepository cidadeRepository;
 	@Autowired
 	private EstadoRepository estadoRepository ;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringProjectApplication.class, args);
@@ -68,8 +77,15 @@ public class SpringProjectApplication implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 		
+		Cliente cli1 = new Cliente(null,"Maria Silve", "maria@gmail.com", "36778912377",TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("1197783574","39251178"));
+		Endereco e1 = new Endereco(null,"Rua flores","300","apt 303","Jardim","332555080",cli1,c1);
+		Endereco e2 = new Endereco(null,"Av Mattos","105","sala 800","Centro","223354580",cli1,c2);
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
 		
 		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1,e2));
 	}
 	
 }
