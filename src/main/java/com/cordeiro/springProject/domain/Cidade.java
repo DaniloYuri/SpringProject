@@ -3,6 +3,8 @@ package com.cordeiro.springProject.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,8 @@ public class Cidade implements Serializable {
 	private Integer id ;
 	private String name ;
 	
+	
+	@JsonManagedReference 
 	 @ManyToOne
 	 @JoinColumn(name ="estado_id")
 	private Estado estado ;
