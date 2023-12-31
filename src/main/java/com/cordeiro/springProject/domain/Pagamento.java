@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.cordeiro.springProject.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,6 +28,7 @@ public  abstract class  Pagamento implements Serializable {
 	private Integer id ;
 	private Integer estado;
 	
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	@MapsId

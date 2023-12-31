@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.cordeiro.springProject.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CollectionTable;
@@ -43,6 +44,8 @@ public class Cliente implements Serializable{
 	
 	private Integer tipo;
 	
+	
+	@JsonBackReference
 	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 
