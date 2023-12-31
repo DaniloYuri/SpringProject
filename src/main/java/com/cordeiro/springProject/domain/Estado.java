@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +26,7 @@ private Integer id;
  private String name;
  
  
-@JsonBackReference
+@JsonIgnore
 @OneToMany(mappedBy="estado")
  private List<Cidade> cidades = new ArrayList<>();
  
